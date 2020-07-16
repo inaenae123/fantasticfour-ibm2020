@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import styles from './styles.module.css';
-import newsapi from 'newsapi';
 import 'semantic-ui-css/semantic.min.css';
 import { Card } from 'semantic-ui-react';
 
@@ -90,7 +89,7 @@ class Carmina extends Component{
             this.setState({newsArticles: []});
             let arr = [...this.state.chosenSource];
             arr[this.state.previousIndex].color = 'grey';
-            this.setState[{chosenSource: arr}];
+            this.setState({chosenSource: arr});
             this.setState({previousIndex: -1});
         }
         if (cardIndex === 0) {

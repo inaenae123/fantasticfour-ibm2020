@@ -1,19 +1,10 @@
 import React, {Component} from 'react';
 import styles from './styles.module.css';
-import {NavLink} from 'react-router-dom';
 import { Card } from 'semantic-ui-react';
 
 class Homepage extends Component{
 
     render(){
-        const pStyle = {
-            display: 'inline-block',
-            border: '1px solid #ccc',
-            boxShadow: '1px 1px #eee',
-            margin: '15px',
-            padding: '15px',
-            cursor: 'pointer'
-        };
 
         const items =  [
             {
