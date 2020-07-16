@@ -3,13 +3,13 @@ import { Card } from 'semantic-ui-react'
 
 const items = [
     {
-        href:'#card-example-link-card',
+        href:'/CreateAccount',
         meta:"Click Here",
         header:'Create a Petition',
         description:'You will be able to share the link to others in an effort to get bring attention to an issue. Individuals will be able to sign your petition to support your cause.'
     },
     {
-        href:'#card-example-link-card',
+        href:'/ManagePetition',
         meta:"Click Here",
         header:'Manage a Petition',
         textAlign: "center",

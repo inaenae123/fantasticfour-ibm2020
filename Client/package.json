@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "@cloudant/cloudant": "^4.2.4",
+    "axios": "^0.19.2",
     "dotenv": "^8.2.0",
     "newsapi": "^2.4.0",
     "radium": "^0.26.0",

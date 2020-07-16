@@ -1,7 +1,4 @@
-.column {
-    float: left;
-    width: 50%;
-}
+
 
 h1 {
     text-align: center;
@@ -19,15 +16,19 @@ p {
     text-align: center;
 }
 
-.container {
-    padding: 20px;
-}
+
 
 .help-container {
     padding: 20px;
     border: solid;
     height: 230px;
 }
+
+.outer {
+    width: 100%;
+    text-align: center;
+  }
+  
   
 /* Clear floats after the columns */
 .row:after {
