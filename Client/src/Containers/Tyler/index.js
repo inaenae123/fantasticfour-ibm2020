@@ -28,6 +28,11 @@ class Tyler extends Component{
                 </div>
 
                 <form>
+                    <input></input>
+                    <input></input>
+                    <input></input>
+                    <input></input>
+                    <input></input>
                     - What is the petition for (title)
                     - Why is it important / why should people care (description)
 

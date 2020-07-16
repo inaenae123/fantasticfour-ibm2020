@@ -26,40 +26,49 @@ class Carmina extends Component{
         liberalSources: [
             {
                 header: 'MSNBC',
-                image: 'https://upload.wikimedia.org/wikipedia/commons/7/74/MSNBC_logo.png'
+                image: 'https://upload.wikimedia.org/wikipedia/commons/7/74/MSNBC_logo.png',
+                color: 'grey'
             },
             {
                 header: 'Vice News',
-                image: 'https://company.vice.com/wp-content/uploads/2019/09/VICE-News-Black-1.png'
+                image: 'https://company.vice.com/wp-content/uploads/2019/09/VICE-News-Black-1.png',
+                color: 'grey'
             },
             {
                 header: 'The Huffington Post',
-                image:'https://i1.wp.com/heatherdauphiny.com/wp-content/uploads/2017/04/HUFFPOST-LOGO-670x326.png?resize=670%2C326&ssl=1'
+                image:'https://i1.wp.com/heatherdauphiny.com/wp-content/uploads/2017/04/HUFFPOST-LOGO-670x326.png?resize=670%2C326&ssl=1',
+                color: 'grey'
             },
             {
                 header: 'CNN',
-                image: 'https://upload.wikimedia.org/wikipedia/commons/b/b1/CNN.svg'
+                image: 'https://upload.wikimedia.org/wikipedia/commons/b/b1/CNN.svg',
+                color: 'grey'
             }
         ],
         conservativeSources: [
             {
                 header: 'The Wall Street Journal',
-                image: 'https://s.wsj.net/img/meta/wsj-social-share.png'
+                image: 'https://s.wsj.net/img/meta/wsj-social-share.png',
+                color: 'grey'
             },
             {
                 header: 'The Washington Times',
-                image: 'https://twt-thumbs.washtimes.com/media/image/2019/01/02/Black_TWT_logo_s878x461.jpg?1af8c0f7858f82aaadbdedffe85452a765671545'
+                image: 'https://twt-thumbs.washtimes.com/media/image/2019/01/02/Black_TWT_logo_s878x461.jpg?1af8c0f7858f82aaadbdedffe85452a765671545',
+                color: 'grey'
             },
             {
                 header: 'Breitbart News',
-                image: 'https://www.thewrap.com/wp-content/uploads/2016/11/Breitbart-logo-618x400.jpg'
+                image: 'https://www.thewrap.com/wp-content/uploads/2016/11/Breitbart-logo-618x400.jpg',
+                color: 'grey'
             },
             {
                 header: 'Fox News',
-                image: 'https://d12jofbmgge65s.cloudfront.net/blog/wp-content/uploads/2019/04/Fox-news-logo.png'
+                image: 'https://d12jofbmgge65s.cloudfront.net/blog/wp-content/uploads/2019/04/Fox-news-logo.png',
+                color: 'grey'
             }
         ],
         chosenSource: [],
+        previousIndex: -1,
         newsArticles: []
     }
 
@@ -77,6 +86,13 @@ class Carmina extends Component{
     };
 
     displaySources = (cardIndex) => {
+        if (this.state.newsArticles.length > 0) {
+            this.setState({newsArticles: []});
+            let arr = [...this.state.chosenSource];
+            arr[this.state.previousIndex].color = 'grey';
+            this.setState[{chosenSource: arr}];
+            this.setState({previousIndex: -1});
+        }
         if (cardIndex === 0) {
             let cards = [...this.state.conservativeSources];
             this.setState({chosenSource: cards});
@@ -88,11 +104,19 @@ class Carmina extends Component{
     };
 
     fetchData = (i) => {
-        const newsURL = 'https://newsapi.org/v2/top-headlines?sources=';
+        let arr = [...this.state.chosenSource];
+        if (this.state.previousIndex >= 0) {
+            arr[this.state.previousIndex].color = 'grey';
+        }
+        arr[i].color = 'red';
+        this.setState({chosenSource: arr});
+        this.setState({previousIndex: i});
+
+        const newsURL = 'https://newsapi.org/v2/everything?';
         const apiKey = '&apiKey=25dbca1a86c349c98794289cff1fd499'; 
         const source = this.state.chosenSource[i].header.toLowerCase().split(" ").join("-");
-        const newSource = newsURL + source + apiKey;
-        console.log(newSource);
+        const q = 'q=(black+lives+matter)OR(racism)OR(inequality)&sources='
+        const newSource = newsURL + q + source + apiKey;
         fetch(newSource).then(resp => resp.json()).then(data => {
             let resultArray = [];
             for (let i = 0; i < data.articles.length; i++) {
@@ -136,17 +160,20 @@ class Carmina extends Component{
                     style={style} />
                 })}
                 <div className="sources">
+                <hr />
                     {this.state.chosenSource.map((chosenSource, index) => {
                         return <Card centered
                         header={chosenSource.header}
                         image={chosenSource.image}
                         key={index}
                         style={style}
+                        color={chosenSource.color}
                         onClick ={(event => this.fetchData(index))} 
                         />
                     })}
                 </div>
                 <div className="articles">
+                <hr />
                     {this.state.newsArticles.map((article, index) => {
                         return <Card centered
                         header={article.title}
