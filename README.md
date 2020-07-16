@@ -19,3 +19,10 @@ In conclusion, we made this solution as an easier way to transport information t
 1. Make sure to have node.js downloaded
 2. Clone the repository
 3. Type in npm start into your terminal to get the application running
+
+## Problems that may Occur
+If clicking on the 4 buttons on the homepage do not work, please just add the following to your local host:
+- Get Help: 'yourwindowsurl' + '/Tyler'
+- Donate: 'yourwindowsurl' + '/Avery'
+- Make a Difference: 'yourwindowsurl' + '/Eon'
+- Be More Informed: 'yourwindowsurl' + '/Carmina'
